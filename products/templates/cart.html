@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Shopping Cart</title>
+</head>
+
+
+<body>
+
+<h1>🛒 Your Cart</h1>
+
+
+{% for item in cart %}
+
+<h2>Product ID : {{ item }}</h2>
+
+{% empty %}
+
+<h2>Your cart is empty</h2>
+
+{% endfor %}
+
+<br><br>
+
+<a href="/checkout/">
+
+<button>
+Proceed to Checkout
+</button>
+
+</a>
+
+</body>
+
+</html>

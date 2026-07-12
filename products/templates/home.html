@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>My E-Commerce Store</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial;
+}
+
+
+body{
+    background:#f8f8f8;
+}
+
+
+/* Navbar */
+
+.navbar{
+
+    background:#111827;
+    color:white;
+    padding:20px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+}
+
+
+.logo{
+
+    font-size:25px;
+    font-weight:bold;
+
+}
+
+
+.navbar a{
+
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+
+}
+
+
+/* Hero */
+
+.hero{
+
+    background:#ffe4e6;
+    padding:40px;
+    text-align:center;
+
+}
+
+
+.hero h1{
+
+    font-size:40px;
+
+}
+
+
+.hero p{
+
+    margin-top:10px;
+    font-size:18px;
+
+}
+
+
+/* Products */
+
+.container{
+
+    display:flex;
+    flex-wrap:wrap;
+    gap:25px;
+    justify-content:center;
+
+    padding:40px;
+
+}
+
+
+.card{
+
+    background:white;
+
+    width:280px;
+
+    padding:20px;
+
+    border-radius:15px;
+
+    box-shadow:0 5px 15px #ddd;
+
+    transition:.3s;
+
+}
+
+
+.card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+
+.card img{
+
+    width:100%;
+    height:220px;
+
+    object-fit:cover;
+
+    border-radius:10px;
+
+}
+
+
+
+.price{
+
+    font-size:22px;
+    font-weight:bold;
+    color:#16a34a;
+
+}
+
+
+.offer{
+
+    background:red;
+    color:white;
+
+    padding:5px 10px;
+
+    border-radius:20px;
+
+    display:inline-block;
+
+}
+
+
+.rating{
+
+    color:#f59e0b;
+
+}
+
+
+button{
+
+    width:100%;
+
+    padding:12px;
+
+    background:#2563eb;
+
+    color:white;
+
+    border:none;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+}
+
+
+button:hover{
+
+    background:#1d4ed8;
+
+}
+
+
+
+/* Trust section */
+
+.trust{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:40px;
+
+    padding:30px;
+
+    background:white;
+
+    font-size:18px;
+
+}
+
+
+</style>
+
+
+</head>
+
+
+
+<body>
+
+
+<div class="navbar">
+
+<div class="logo">
+🛒 Shalini Store
+</div>
+
+
+<div>
+
+<a href="/">Home</a>
+
+<a href="/register/">Register</a>
+
+<a href="/login/">Login</a>
+
+<a href="/cart/">Cart</a>
+
+</div>
+
+
+</div>
+
+
+
+
+<div class="hero">
+
+<h1>
+🔥 Mega Sale is Live!
+</h1>
+
+<p>
+Best products at amazing prices
+</p>
+
+</div>
+
+
+
+
+
+<div class="container">
+
+
+{% for product in products %}
+
+
+<div class="card">
+
+
+<img src="{{product.image}}">
+
+
+
+<h2>
+{{product.name}}
+</h2>
+
+
+<div class="rating">
+
+⭐⭐⭐⭐⭐
+
+</div>
+
+
+<p class="offer">
+
+20% OFF
+
+</p>
+
+
+<p class="price">
+
+₹{{product.price}}
+
+</p>
+
+
+<p>
+
+{{product.description}}
+
+</p>
+
+
+<br>
+
+
+<a href="/product/{{product.id}}/">
+
+<button>
+View Product
+</button>
+
+</a>
+
+
+</div>
+
+
+{% endfor %}
+
+
+
+</div>
+
+
+
+
+
+<div class="trust">
+
+
+<div>
+🚚 Free Delivery
+</div>
+
+
+<div>
+🔒 Secure Payment
+</div>
+
+
+<div>
+↩️ Easy Returns
+</div>
+
+
+<div>
+⭐ Trusted Products
+</div>
+
+
+</div>
+
+
+
+</body>
+
+</html>
