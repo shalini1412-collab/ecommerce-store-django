@@ -1,0 +1,21 @@
+{% extends 'store/base.html' %}
+{% block title %}Checkout - CodeShop{% endblock %}
+{% block content %}
+    <h1>Checkout</h1>
+    <div class="checkout-layout">
+        <form method="post" class="checkout-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Place Order</button>
+        </form>
+        <div class="order-summary">
+            <h3>Order Summary</h3>
+            <ul>
+                {% for item in cart %}
+                    <li>{{ item.product.name }} x{{ item.quantity }} — ${{ item.subtotal }}</li>
+                {% endfor %}
+            </ul>
+            <p class="cart-total">Total: ${{ cart.get_total }}</p>
+        </div>
+    </div>
+{% endblock %}

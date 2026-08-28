@@ -1,0 +1,22 @@
+{% extends 'store/base.html' %}
+{% block title %}My Orders - CodeShop{% endblock %}
+{% block content %}
+    <h1>My Orders</h1>
+    {% if orders %}
+        <table class="cart-table">
+            <thead><tr><th>Order</th><th>Date</th><th>Status</th><th>Total</th></tr></thead>
+            <tbody>
+            {% for order in orders %}
+                <tr>
+                    <td><a href="{% url 'order_confirmation' order.id %}">#{{ order.id }}</a></td>
+                    <td>{{ order.created_at|date:"M d, Y" }}</td>
+                    <td>{{ order.status }}</td>
+                    <td>${{ order.total }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>You haven't placed any orders yet.</p>
+    {% endif %}
+{% endblock %}

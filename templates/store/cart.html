@@ -1,0 +1,38 @@
+{% extends 'store/base.html' %}
+{% block title %}Your Cart - CodeShop{% endblock %}
+{% block content %}
+    <h1>Your Cart</h1>
+    {% if cart %}
+        <table class="cart-table">
+            <thead>
+                <tr><th>Product</th><th>Price</th><th>Quantity</th><th>Subtotal</th><th></th></tr>
+            </thead>
+            <tbody>
+                {% for item in cart %}
+                <tr>
+                    <td>{{ item.product.name }}</td>
+                    <td>${{ item.product.price }}</td>
+                    <td>
+                        <form action="{% url 'update_cart' item.product.id %}" method="post" class="inline-form">
+                            {% csrf_token %}
+                            <input type="number" name="quantity" value="{{ item.quantity }}" min="1" class="qty-input">
+                            <button type="submit" class="btn btn-small">Update</button>
+                        </form>
+                    </td>
+                    <td>${{ item.subtotal }}</td>
+                    <td>
+                        <form action="{% url 'remove_from_cart' item.product.id %}" method="post" class="inline-form">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger btn-small">Remove</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <p class="cart-total">Total: ${{ cart.get_total }}</p>
+        <a href="{% url 'checkout' %}" class="btn btn-primary">Proceed to Checkout</a>
+    {% else %}
+        <p>Your cart is empty. <a href="{% url 'product_list' %}">Continue shopping</a>.</p>
+    {% endif %}
+{% endblock %}
